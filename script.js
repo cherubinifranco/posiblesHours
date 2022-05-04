@@ -4,30 +4,35 @@ let C = 0;
 let D = 0;
 let numbers = [A,B,C,D];
 let result = [];
-let repited = [];
 let notAvailable = [];
+const newNumbers = document.getElementById("newNumbers");
 
-
+const update = () => {
+    x = newNumbers.value.slice(0,4);
+    numbers = [];
+    for (let i = 0; i < 4; i++){
+        numbers.push(x[i]);
+    }
+    count(numbers);
+}
+ 
 const check = (h1, h2, m1, m2) =>{
     let hour = h1 + "" + h2;
     let minutes = m1 + "" + m2;
     let tested = hour + ":" + minutes;
-    console.log("Hora probado: " + tested);
+    console.log("Time tested: " + tested);
     if (hour < 24 && minutes <60){
         if (result.includes(tested)){
-            console.log("Ya esta en la lista");
-            repited.push(tested);
-            console.log("Nueva lista de repetidos: " + repited);
+            console.log("Already on the list");
         }else {
-            console.log("Se agrego a la lista");
+            console.log("Added to the list");
             result.push(tested);
-            console.log("Nueva lista total: " + result);
         }
     } else {
-        console.log("NO DISPONIBLE");
+        console.log("NOT AVAILABLE");
         notAvailable.push(tested);
-        console.log("Nueva lista de no disponibles: " + notAvailable);
     }
+    console.log("------------------------------------")
 }
 
 const clockCheck = (n1,n2,n3,n4) =>{
@@ -38,27 +43,19 @@ const clockCheck = (n1,n2,n3,n4) =>{
 }
 
 
-const rotateArray = (x) => x.unshift(x.pop());
+const rotateArray = x => x.unshift(x.pop());
 
 
-const count = () =>{
+const count = (x) =>{
     for (let i = 0; i<4; i++){
-        console.log("Iteracion: " + i);
-        clockCheck(...numbers);
-        rotateArray(numbers);
+        console.group("Iteration: " + i);
+        clockCheck(...x);
+        rotateArray(x);
+        console.groupEnd();
     }
+    console.log("Total available: " + result);
+    console.log("Lista total no disponibles: " + notAvailable);
+    console.log("Cantidad de horas disponibles: " + result.length);
     return result.length;
 }
-
-count();
-
-
-console.log("Lista total disponibles: " + result);
-console.log("Lista total repetidos: " + repited);
-console.log("Lista total no disponibles: " + notAvailable);
-console.log("Cantidad de horas disponibles: " + result.length);
-
-
-
-
 
