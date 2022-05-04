@@ -8,12 +8,19 @@ let notAvailable = [];
 const newNumbers = document.getElementById("newNumbers");
 
 const update = () => {
-    x = newNumbers.value.slice(0,4);
-    numbers = [];
-    for (let i = 0; i < 4; i++){
-        numbers.push(x[i]);
+    if(newNumbers.value.length >= 4){
+        console.clear();
+        result = [];
+        notAvailable = [];
+        x = newNumbers.value.slice(0,4);
+        numbers = [];
+        for (let i = 0; i < 4; i++){
+            numbers.push(x[i]);
+        }
+        count(numbers);
+    }else {
+        alert("You need at least 4 numbers in the input")
     }
-    count(numbers);
 }
  
 const check = (h1, h2, m1, m2) =>{
@@ -23,9 +30,9 @@ const check = (h1, h2, m1, m2) =>{
     console.log("Time tested: " + tested);
     if (hour < 24 && minutes <60){
         if (result.includes(tested)){
-            console.log("Already on the list");
+            console.log("Already on the list of posible times");
         }else {
-            console.log("Added to the list");
+            console.log("Added to the list of posible times");
             result.push(tested);
         }
     } else {
