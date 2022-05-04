@@ -6,6 +6,7 @@ let numbers = [A,B,C,D];
 let result = [];
 let notAvailable = [];
 const newNumbers = document.getElementById("newNumbers");
+const totalTimes = document.getElementById("totalTimes");
 
 const update = () => {
     if(newNumbers.value.length >= 4){
@@ -61,8 +62,9 @@ const count = (x) =>{
         console.groupEnd();
     }
     console.log("Total available: " + result);
-    console.log("Lista total no disponibles: " + notAvailable);
-    console.log("Cantidad de horas disponibles: " + result.length);
+    console.log("Total not available: " + notAvailable);
+    console.log("Number of hours available: " + result.length);
+    totalTimes.innerHTML = `Number of hours available: ` + result.length;
     return result.length;
 }
 
